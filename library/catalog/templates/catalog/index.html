@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <h1>HOMEPAGE</h1>
+    <p>Total Books: {{num_books}}</p>
+    <p>Number of instances available: {{num_instances}}</p>
+    <p>Num Available: {{num_instances_available}}</p>
+
+    {% if user.is_authenticated %}
+        <p> You are logged in</p>
+        <p> Welcome: {{user.get_username}}</p>
+        <a href="{% url 'logout' %}?next={{request.path}}">Logout</a>
+<!-- without ?next={{request.path}}, it will redirect to the logout page, otherwise, it will remain on current page-->
+    {% else %}
+        <p> You are not logged in</p>
+        <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+    {% endif %}
+</head>
+<body>
+
+</body>
+</html>

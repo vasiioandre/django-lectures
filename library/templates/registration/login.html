@@ -1,0 +1,26 @@
+{% if form.errors %}
+    <p>Your username or password was incorrect. Try again.</p>
+{% endif %}
+
+{% if next %} <!-- User got nexted -->
+    {% if user.is_authenticated %} <!-- User logged in, but no access -->
+        <p>You don't have permission for this page</p>
+    {% else %}  <!-- User got nexted because it's not logged in -->
+        <p>Please login to see this page</p>
+    {% endif %}
+{% endif %}
+
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{form.username.label_tag}}
+    {{form.username}}
+
+    {{form.password.label_tag}}
+    {{form.password}}
+
+    <input type="submit" value="Login">
+    <input type="hidden" name="next" value="{{next}}">
+</form>
+
+<!-- By default, after you login successfully, it takes you to accounts/profile/ -->
+<!-- Or go to settings.py and add LOGIN_REDIRECT_URL -->
