@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is my variable HTML</h1>
+    <h2>Her first name was {{first_name | upper}}</h2>
+    <h2>The name has {{first_name | length}} letters </h2>
+    <h3>{{some_list}}</h3>
+    <p>{{some_list.0}}</p>
+    <p>{{some_dict.inside_key}}</p>
+
+    <ul>
+    {% for item in some_list %}
+        <li>{{item}}</li>
+    {% endfor %}
+    </ul>
+
+    <ul>
+    {% for k,v in some_dict.items %}
+        <li>{{v}}</li>
+    {% endfor %}
+    </ul>
+
+    {% if user_logged_in %}
+        <h1>Welcome back, you are logged in</h1>
+    {% endif %}
+
+    <ul>
+        {% for num in some_list %}
+        {% if num == 2 %}
+            <li>TWO</li>
+        {% else %}
+            <li>{{num}}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
